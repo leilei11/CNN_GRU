@@ -47,7 +47,7 @@ def mean_absolute_error_list(y_true, y_pred):
     return np.mean(errors)*100, errors*100
 
 
-data_dir = 'D:\\SJTU\机器学习\\stationData\\给的数据\\自动化数据\\2019.8.9—9.19.csv'
+data_dir = 'file/2019.8.9—9.19.csv'
 new_data = create_dataframe(data_dir, 'I')
 # new_data = create_dataframe(data_dir, 'Y')
 # new_data = create_dataframe(data_dir, 'W')
