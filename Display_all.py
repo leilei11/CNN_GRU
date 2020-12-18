@@ -29,7 +29,7 @@ def cal_precision(error_dataframe):
     return (1 - sum / count) * 100
 
 
-def plot_predice_pic(dict_dir):
+def plot_predict_pic(dict_dir):
     real = None
     date =None
 
@@ -44,13 +44,14 @@ def plot_predice_pic(dict_dir):
         plt.plot(data.index, data['predict'], label=dir)
 
     # plt.plot(date.index, real, label='Real_data')
+    plt.figure(figsize=(16, 9))
     plt.plot(date.index, real, label='真实值')
     plt.tick_params(labelsize=23)
     plt.ylim((10, 80))
     plt.xlabel('时间/min', size=23)
     plt.ylabel('负荷/A', size=23)
-    plt.legend(loc='left',  prop={'size': 20}, frameon=False)
-    plt.savefig(r'picture/ALL_Data4.png',
+    plt.legend(loc='upper right',  prop={'size': 20}, frameon=False, ncol=3)
+    plt.savefig(r'picture/ALL_Data.png',
                 format='png',
                 bbox_inches='tight',
                 transparent=True,
@@ -58,9 +59,9 @@ def plot_predice_pic(dict_dir):
 
 
     # 画出在300到750之间的图像
-    plt.figure(1)
-    plt.rcParams['axes.spines.top'] = True  # 显示顶部轴，必须放在plot之前
-    plt.rcParams['axes.spines.right'] = True  # 显示右部轴
+    plt.figure(figsize=(16, 9))
+    # plt.rcParams['axes.spines.top'] = True  # 显示顶部轴，必须放在plot之前
+    # plt.rcParams['axes.spines.right'] = True  # 显示右部轴
     for dir in dict_dir:
         data = pd.read_csv(dict_dir[dir])
         data['time'] = pd.to_datetime(data['time'], format='%Y%m%d %H:%M:%S')
@@ -72,21 +73,21 @@ def plot_predice_pic(dict_dir):
         date = data['time'][300:750]
         plt.plot(data.index, data['predict'], label=dir)
 
-    plt.plot(date.index, real, label='Real_data')
+    plt.plot(date.index, real, label='真实值')
     plt.tick_params(labelsize=20)
-    # plt.xlabel('Time/min', size=10)
-    # plt.ylabel('Value/A', size=10)
-    # plt.legend(loc='upper right', prop={'size': 15})
-    plt.savefig(r'picture/Some_Data4.png',
+    plt.xlabel('时间/min', size=23)
+    plt.ylabel('负荷/A', size=23)
+    plt.legend(loc='upper center',  prop={'size': 20}, frameon=False, ncol=3)
+    plt.savefig(r'picture/Some_Data1.png',
                 format='png',
                 bbox_inches='tight',
                 transparent=True,
                 )  # bbox_inches='tight' 图片边界空白紧致, 背景透明
 
     # 画出在1700到2250之间的图像
-    plt.figure(2)
-    plt.rcParams['axes.spines.top'] = True  # 显示顶部轴，必须放在plot之前
-    plt.rcParams['axes.spines.right'] = True  # 显示右部轴
+    plt.figure(figsize=(16, 9))
+    # plt.rcParams['axes.spines.top'] = True  # 显示顶部轴，必须放在plot之前
+    # plt.rcParams['axes.spines.right'] = True  # 显示右部轴
     for dir in dict_dir:
         data = pd.read_csv(dict_dir[dir])
         data['time'] = pd.to_datetime(data['time'], format='%Y%m%d %H:%M:%S')
@@ -98,12 +99,12 @@ def plot_predice_pic(dict_dir):
         date = data['time'][1700:2250]
         plt.plot(data.index, data['predict'], label=dir)
 
-    plt.plot(date.index, real, label='Real_data')
+    plt.plot(date.index, real, label='真实值')
     plt.tick_params(labelsize=20)
-    # plt.xlabel('Time/min', size=10)
-    # plt.ylabel('Value/A', size=10)
-    # plt.legend(loc='upper right', prop={'size': 15})
-    plt.savefig(r'picture/Some_Data5.png',
+    plt.xlabel('时间/min', size=23)
+    plt.ylabel('负荷/A', size=23)
+    plt.legend(loc='upper center',  prop={'size': 20}, frameon=False, ncol=3)
+    plt.savefig(r'picture/Some_Data2.png',
                 format='png',
                 bbox_inches='tight',
                 transparent=True,
@@ -243,6 +244,6 @@ if __name__ == '__main__':
     plt.tick_params(labelsize=23)
     plt.autoscale(enable=True, axis='x', tight=True)  # 去掉坐标边缘的留白
     plt.autoscale(enable=True, axis='y', tight=True)  # 去掉坐标边缘的留白
-    # plot_predice_pic(dict_dir)
+    plot_predict_pic(dict_dir1)
     # plot_error_pic(dict_dir1)
-    plot_part_error_pic(dict_dir2)
+    # plot_part_error_pic(dict_dir2)
